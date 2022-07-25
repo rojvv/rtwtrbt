@@ -1,7 +1,7 @@
 import "https://deno.land/x/dotenv@v3.2.0/load.ts";
 import { cleanEnv, str } from "https://deno.land/x/envalid@v0.0.3/mod.ts";
 import { Application, Router } from "https://deno.land/x/oak@v10.5.1/mod.ts";
-import { auth, Client } from "https://deno.land/x/twi@1.0.2/mod.ts";
+import { auth } from "https://deno.land/x/twi@1.0.2/mod.ts";
 
 const env = cleanEnv(Deno.env.toObject(), {
   CLIENT_ID: str(),
