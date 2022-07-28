@@ -87,7 +87,7 @@ async function catchUp() {
   }
   log.info({
     msg: "catch up complete",
-    ...(count != valid ? { count, valid } : {}),
+    ...{ count, ...(count != valid ? { valid } : {}) },
   });
 }
 
