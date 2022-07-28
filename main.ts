@@ -85,27 +85,31 @@ async function catchUp() {
       queue.push(tweet.id);
     }
   }
-  log.info({ msg: "catch up complete", count, valid });
+  log.info({
+    msg: "catch up complete",
+    ...(count != valid ? { count, valid } : {}),
+  });
 }
 
 async function stream(reconnect?: boolean) {
-  if (reconnect) {
-    log.info("reconnected");
-  }
-  for await (const { data, errors } of app.tweets.searchStream()) {
-    if (!data || errors) {
-      continue;
+  log.info(`${reconnect ? "re" : ""}connected`);
+  try {
+    for await (const { data, errors } of app.tweets.searchStream()) {
+      if (!data || errors) {
+        continue;
+      }
+      log.info({ msg: "received", id: data.id });
+      if (
+        isBlacklisted(data.text)
+      ) {
+        log.info({ msg: "skipped", id: data.id });
+        continue;
+      }
+      queue.push(data.id);
     }
-    log.info({ msg: "received", id: data.id });
-    if (
-      isBlacklisted(data.text)
-    ) {
-      log.info({ msg: "skipped", id: data.id });
-      continue;
-    }
-    queue.push(data.id);
+  } finally {
+    log.warning("connection was closed");
   }
-  log.warning("connection was closed");
   setTimeout(() => stream(true), 1000);
 }
 

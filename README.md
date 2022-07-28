@@ -7,7 +7,8 @@
 - Action logging
 - Character, term and word blacklisting
 - Catching up the tweets that were missed during downtime
-- Instant retweets with a maximum delay of 20s between each retweet which is only for not exceeding the API limits
+- Instant retweets with a maximum delay of 20s between each retweet which is
+  only for not exceeding the API limits
 
 ## Live Instance
 
@@ -28,7 +29,8 @@ There's a running instance that retweets #deno and #denoland hashtags:
 
 > Note: You can also provide these environment variables in `.env`.
 
-After setting the variables, you will have to get a user token for your automation account:
+After setting the variables, you will have to get a user token for your
+automation account:
 
 1. Set your app's callback URL to the following:
 
@@ -58,11 +60,13 @@ deno run import.ts
 
 ## Blacklisting
 
-You can blacklist characters, words and/or terms so they are not retweeted.
-You can do this by placing the characters, words and/or or terms you want to blacklist inside a file called `blacklist.txt` in the directory you run from.
+You can blacklist characters, words and/or terms so they are not retweeted. You
+can do this by placing the characters, words and/or or terms you want to
+blacklist inside a file called `blacklist.txt` in the directory you run from.
 
 - The characters, words, and/or terms should be separated by `\n`.
-- Case sensitive characters, words and/or terms can be differed by a trailing `\t` character.
+- Case sensitive characters, words and/or terms can be differed by a trailing
+  `\t` character.
 
 ## Running
 
