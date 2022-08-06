@@ -1,13 +1,20 @@
 import { dirname, fromFileUrl, join } from "./deps.ts";
 
-const blacklist = new Array<string>();
+const blacklist = new Array<RegExp>();
 
 try {
   const lines = (await Deno.readTextFile(
     join(dirname(fromFileUrl(import.meta.url)), "blacklist.txt"),
   )).split(/\n/).filter((v) => v);
   for (const line of lines) {
-    blacklist.push(line);
+    const f = line.startsWith("/");
+    const pattern = f ? line.slice(1, line.lastIndexOf("/")) : line;
+    if (!pattern) {
+      console.warn("Bad blacklist item:", line);
+      continue;
+    }
+    const flags = f ? line.slice(line.lastIndexOf("/") + 1) : "";
+    blacklist.push(new RegExp(pattern, flags));
   }
 } catch (_err) {
   //
@@ -15,9 +22,7 @@ try {
 
 export function isBlacklisted(text: string) {
   for (const item of blacklist) {
-    const i = (item.endsWith("\t") ? item : item.toLowerCase()).trim();
-    const t = item.endsWith("\t") ? text : text.toLowerCase();
-    if (t.includes(i)) {
+    if (text.match(item)) {
       return true;
     }
   }
