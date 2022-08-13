@@ -10,12 +10,6 @@
 - Instant retweets with a maximum delay of 20s between each retweet which is
   only for not exceeding the API limits
 
-## Live Instance
-
-There's a running instance that retweets #deno and #denoland hashtags:
-
-[@DenoRetweeter](https://twitter.com/DenoRetweeter)
-
 ## Configuration
 
 | Variable          | Required | Description                                                                                                            |
