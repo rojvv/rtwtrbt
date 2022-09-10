@@ -59,7 +59,8 @@ can do this by placing the characters, words and/or or terms you want to
 blacklist inside a file called `blacklist.txt` in the directory you run from.
 
 - The characters, words, and/or terms should be separated by `\n`.
-- Each line is a regular expression that will make tweets not retweeted if they match its text. Flags can be provided like this: `/regex/i`.
+- Each line is a regular expression that will make tweets not retweeted if they
+  match its text. Flags can be provided like this: `/regex/i`.
 
 ## Running
 
