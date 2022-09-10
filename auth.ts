@@ -1,4 +1,5 @@
-import { auth, AuthHeader } from "./deps.ts";
+import { auth } from "twi/mod.ts";
+import { AuthHeader } from "twi/types.ts";
 
 export class OAuth2User extends auth.OAuth2User {
   async getAuthHeader(): Promise<AuthHeader> {

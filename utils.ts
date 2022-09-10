@@ -1,4 +1,4 @@
-import { dirname, fromFileUrl, join } from "./deps.ts";
+import { dirname, fromFileUrl, join } from "std/path/mod.ts";
 
 const blacklist = new Array<RegExp>();
 

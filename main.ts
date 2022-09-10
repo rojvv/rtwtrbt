@@ -1,4 +1,5 @@
-import { Client, log } from "./deps.ts";
+import * as log from "std/log/mod.ts";
+import { Client } from "twi/mod.ts";
 import * as auth from "./auth.ts";
 import env from "./env.ts";
 import { isBlacklisted } from "./utils.ts";
