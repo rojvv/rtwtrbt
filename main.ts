@@ -108,6 +108,8 @@ async function stream(reconnect?: boolean) {
       }
       queue.push(data.id);
     }
+  } catch (err) {
+    log.info({ msg: "connection error", err: String(err) });
   } finally {
     log.warning("connection was closed");
   }
